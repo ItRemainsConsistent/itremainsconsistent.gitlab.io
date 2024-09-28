@@ -1,8 +1,6 @@
-# `itremainsconsistent.gitlab.io`
+# [`itremainsconsistent.gitlab.io`](itremainsconsistent.gitlab.io)
 
-<itremainsconsistent.gitlab.io>
-
-My personal GitLab Pages site, forked from [Isaac Elliot's blog](https://github.com/LightAndLight/lightandlight.github.io).
+My personal GitLab Pages site, forked from [Isaac Elliott's blog](https://github.com/LightAndLight/lightandlight.github.io).
 
 ## Publishing
 

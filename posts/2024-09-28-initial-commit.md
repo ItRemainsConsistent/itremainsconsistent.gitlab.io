@@ -18,6 +18,6 @@ I hope I can come back to this blog in a few months and use the written corpus a
 See you around!
 
 [^fork]: On that same note, I have decided to fork another Hakyll-powered blog instead of doing the setup from scratch --- my inner Fedora user won the war against my inner Arch user.
-Many thanks to Isaac Elliot for his permission and assistance!
+Many thanks to Isaac Elliott for his permission and assistance!
 Check out [Isaac's blog](https://blog.ielliott.io/), from which I borrowed all the code and formatting.
 I will most definitely tinker with both layout and internals at some point in the future, but for now I am happy to have a functional and pretty setup so that I can avoid technical rabbit holes and just start writing posts.
