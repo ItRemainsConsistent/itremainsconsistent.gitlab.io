@@ -74,6 +74,8 @@ blockquote > *:first-child {
 
 .blogtitle {
     margin-bottom: 0;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
 }
 
 .blogsubtitle {
@@ -89,7 +91,7 @@ blockquote > *:first-child {
 }
 
 .largish {
-    font-size: 2em;
+    font-size: 1.5em;
 }
 
 h1, h2, h3, h4, h5, p, ul, ol, pre, blockquote {
