@@ -1,5 +1,5 @@
 ---
-title: About Me
+title: About me
 permalink: /about
 description: A little bit about me.
 ---
@@ -9,7 +9,9 @@ description: A little bit about me.
 Hello!
 I'm Santiago Pareja-Pérez, a PhD student from Zaragoza (in Spain).
 
-I am currently studying plane curve singularities, but did my [master's thesis](https://hdl.handle.net/20.500.14352/105943) on the classification of TQFTs.
+I am currently studying plane curve singularities, but did my master's thesis on the classification of TQFTs.
+Check out the [Documents page](/documents), if you are curious!
+
 A list of research interests will appear here eventually.
 
 <h1 class="centered">About this blog</h1>
