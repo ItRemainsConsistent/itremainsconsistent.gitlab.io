@@ -10,4 +10,4 @@ WIP.
 
 <h1 class="centered">About this blog</h1>
 
-As mentioned in the [Initial Commit](/initial-commit), the codebase for this webpage was forked (with permission) from [Isaac Elliot's blog](https://github.com/LightAndLight/lightandlight.github.io).
+As mentioned in the [Initial Commit](/initial-commit), the codebase for this webpage was forked (with permission) from [Isaac Elliott's blog](https://github.com/LightAndLight/lightandlight.github.io).
