@@ -3,3 +3,5 @@
 dist-newstyle/
 _cache
 _site
+public
+.stack-work
