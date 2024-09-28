@@ -116,8 +116,8 @@ main = do
       route $ gsubRoute "posts/" (const "")
       compile copyFileCompiler
 
-    match (fromList ["favicon.ico", "CNAME"]) $ do
-      route idRoute
+    match "rootfiles/*" $ do
+      route $ gsubRoute "rootfiles/" (const "")
       compile copyFileCompiler
 
     create ["index.html"] $ do
