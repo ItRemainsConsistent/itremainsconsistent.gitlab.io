@@ -28,7 +28,7 @@ import Text.Pandoc.Writers (writePlain)
 import WaiAppStatic.Types (File (..), fromPiece, unsafeToPiece)
 
 root :: String
-root = "https://blog.ielliott.io"
+root = "https://itremainsconsistent.gitlab.io"
 
 -- | Serves the contents of `/path/to/x.html` when `/path/to/x` is requested.
 withPrettyUrls :: Configuration -> Configuration
@@ -130,8 +130,8 @@ main = do
             "templates/index-metadata.html"
             ( constField "root" root
                 <> constField "url" "/"
-                <> constField "title" "blog.ielliott.io"
-                <> constField "description" "Isaac Elliott's personal blog."
+                <> constField "title" "It Remains Consistent"
+                <> constField "description" "A math blog."
             )
             =<< makeItem ("" :: String)
 
@@ -248,10 +248,10 @@ main = do
       compile $ do
         let feedConfiguration =
               FeedConfiguration
-                { feedTitle = "blog.ielliott.io"
-                , feedDescription = "Isaac Elliott's personal blog"
-                , feedAuthorName = "Isaac Elliott"
-                , feedAuthorEmail = "isaace71295@gmail.com"
+                { feedTitle = "It Remains Consistent"
+                , feedDescription = "A math blog."
+                , feedAuthorName = "Santiago Pareja-Pérez"
+                , feedAuthorEmail = "itremainsconsistent@proton.me"
                 , feedRoot = root
                 }
 

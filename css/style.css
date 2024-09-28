@@ -72,12 +72,24 @@ blockquote > *:first-child {
     margin-top: 1rem;
 }
 
+.blogtitle {
+    margin-bottom: 0;
+}
+
+.blogsubtitle {
+    margin-bottom: 1rem;
+}
+
 .centered {
     text-align: center;
 }
 
 .large {
     font-size: 3em;
+}
+
+.largish {
+    font-size: 2em;
 }
 
 h1, h2, h3, h4, h5, p, ul, ol, pre, blockquote {
