@@ -87,8 +87,8 @@ blockquote > *:first-child {
 }
 
 .subtitle {
-    text-align: justify;
-    text-align-last: center;
+    hyphens: none;
+    text-align: center;
 }
 
 .centered {
