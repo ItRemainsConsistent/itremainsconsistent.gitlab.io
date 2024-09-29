@@ -1,0 +1,11 @@
+<header>
+    <h1 class="centered">Archive</h1>
+</header>
+
+<ul>
+$for(posts)$
+    <li>
+        $isodate$. <a href=$url$>$title$</a>
+    </li>
+$endfor$
+</ul>

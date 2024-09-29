@@ -1,7 +1,7 @@
 ---
 title: Initial Commit
 permalink: /initial-commit
-date: 2024-09-28 17:45:00 +0200
+published: 2024-09-28 17:45:00 +0200
 updated: 2024-09-29 14:30:00 +0200
 tags: meta
 subtitle: |

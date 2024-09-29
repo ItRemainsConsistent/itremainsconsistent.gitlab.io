@@ -142,7 +142,34 @@ main = do
             (bodyField "body" <> constField "metadata" metadata.itemBody)
           >>= prettifyUrls
 
-    match (fromList ["about.md", "archive.md", "cv.md", "documents.md", "404.md"]) $ do
+    create ["archive.html"] $ do
+      route idRoute
+      compile $ do
+        posts <- recentFirst =<< loadAll "posts/*"
+
+        metadata <-
+          loadAndApplyTemplate
+            "templates/page-metadata.html"
+            ( constField "root" root 
+                <> constField "title" "Archive"
+                <> constField "description" "Post archive."
+                <> urlField "url"
+                <> metadataField
+            )
+            =<< makeItem ("" :: String)
+
+        makeItem ""
+          >>= loadAndApplyTemplate "templates/archive-post-list.html" (postListCtx posts Nothing)
+          >>= loadAndApplyTemplate
+            "templates/page.html"
+            ( bodyField "body"
+                <> constField "title" "Archive" 
+                <> constField "description" "Post archive."
+                <> constField "metadata" metadata.itemBody
+            )
+          >>= prettifyUrls
+
+    match (fromList ["about.md", "documents.md", "404.md"]) $ do
       route $ setExtension "html"
       compile $ do
         metadata <-
@@ -360,6 +387,7 @@ fromContents contents =
 postInfoCtx :: Context String
 postInfoCtx =
   dateField "date" "%e %B, %Y"
+    <> dateField "isodate" "%Y-%m-%d"
     <> prettyUrlField "url"
     <> listFieldWith @String
       "tags"
