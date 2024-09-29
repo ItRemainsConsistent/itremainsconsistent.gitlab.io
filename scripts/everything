@@ -1,0 +1,2 @@
+#!/usr/bin/bash
+${BASH_SOURCE%/*}/compile && ${BASH_SOURCE%/*}/rebuild && ${BASH_SOURCE%/*}/watch

@@ -1,0 +1,2 @@
+#!/usr/bin/bash
+stack exec site rebuild
