@@ -1,5 +1,8 @@
 <entry>
     <title>$title$</title>
+    $if(subtitle)$
+    <subtitle>$subtitle$</subtitle>
+    $endif$
     <link href="$root$$url$" />
     $if(feed_id)$
     <id>$feed_id$</id>

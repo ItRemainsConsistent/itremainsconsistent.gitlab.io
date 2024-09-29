@@ -7,14 +7,19 @@ $endif$
 $for(posts)$
 <article>
     <header>
+        $if(subtitle)$
+        <h1 class="titlewithsubtitle"><a href="$url$">$title$</a></h1>
+        <p class="subtitle">$subtitle$</p>
+        $else$
         <h1><a href="$url$">$title$</a></h1>
+        $endif$
         <p class="date">$date$</p>
     </header>
 
     $excerpt$
 
     <footer style="text-align: center;">
-        <p>...
+        <p><a href="$url$" style="text-decoration:none">...</a>
             $if(has_tags)$
             <br>
             $partial("templates/tags-list.html")$

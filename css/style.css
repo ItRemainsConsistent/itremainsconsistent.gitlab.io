@@ -82,6 +82,15 @@ blockquote > *:first-child {
     margin-bottom: 1rem;
 }
 
+.titlewithsubtitle {
+    margin-bottom: 0;
+}
+
+.subtitle {
+    text-align: justify;
+    text-align-last: center;
+}
+
 .centered {
     text-align: center;
 }
