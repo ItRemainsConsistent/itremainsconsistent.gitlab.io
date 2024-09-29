@@ -4,7 +4,7 @@ My personal GitLab Pages site, forked from [Isaac Elliott's blog](https://github
 
 ## Publishing
 
-The site is served from a GitLab CI pipeline.
+The site is served from a GitLab CI pipeline, as detailed in the [`.gitlab-ci.yml`](.gitlab-ci.yml) file.
 
 ## Features
 
@@ -20,10 +20,11 @@ The site is served from a GitLab CI pipeline.
 | `title` | yes | string | Used in the HTML `<title>`, and displayed as the post's heading. |
 | `permalink` | yes | string | The post's absolute path on the site. |
 | `date` | no | string (format: YYYY-mm-dd) | The published date. Appears under the post's heading. If omitted, the post's filepath must begin with the published date. |
+| `published` | no | string (format: YYYY-mm-dd hh:MM:ss TZD) | Same as the option above, but also sets the correct time in the Atom feed. |
+| `updated` | no | string (format: YYYY-mm-dd hh:MM:ss TZD) | The last updated time. Currently only used for the Atom feed. |
+| `subtitle` | no | string (format: HTML) | Displayed just below the post's heading. |
 | `excerpt` | no | string (format: HTML) | A summary of the post. Displayed on the post index. When omitted, the post's first paragraph is used. |
 | `tags` | no | list of string | Shown for each post on the post index, and at the bottom of a post's page. See also: [Tag pages](#tag-pages). |
-| `math` | no | bool | Enable [Math support](#math-support) |
-| `chinese` | no | bool | Use a better font for Chinese characters |
 | `feed_id` | no | string | Used for feed compatibility. A post's feed ID is based on its `permalink`, so if you change the permalink then feed readers will think you wrote a new post. If you change a `permalink`, set the post's `feed_id` to whatever it was when it was originally published. |
 
 ### Tag pages
@@ -33,7 +34,7 @@ Each tags page lists all the posts with that tag.
 
 ### Math support
 
-When the [post front-matter](#post-front-matter) has `math: true`, the following is enabled for a post's page:
+The following is enabled globally:
 
 * Better MathML font ([Libertinus Math](https://github.com/alerque/libertinus))
 * MathML-specific CSS
