@@ -4,9 +4,7 @@ permalink: /documents
 description: Links to some articles and talk slides.
 ---
 
-<h1 class="centered">Documents</h1>
-
-<div id="toc" style="float: right;"><!-- generated --></div>
+# Documents
 
 This is a collection of links to my articles, theses, and talk slides.
 
@@ -28,7 +26,7 @@ Also available at Unizar's [Zaguan](https://zaguan.unizar.es/record/124830).
 Not available yet!
 - 2024-07-24. XXV ENEM: ["Teorías topológicas de campos cuánticos: Pantalones, álgebras de Frobenius y el Lema del Zorro"](/files/2024-07-24-charla-enem-2024-v1.1.pdf).
 
-## Miscelaneous things
+## Miscellaneous stuff
 
 Some other things I've written over the years and want to share, mainly class assignments.
 
@@ -36,4 +34,4 @@ Some other things I've written over the years and want to share, mainly class as
 - 2024-04-03. Class assignment talk slides: ["Haces. ¿Por qué?"](/files/2024-04-03-Haces._¿Por_qué__(Revisado).pdf).
 - 2024-01-19. Class assignment talk slides: ["Variedades de representaciones y de caracteres"](/files/2024-01-19-variedades-de-caracteres.pdf).
 - 2023-12-28. Class assignment essay: ["La clasificación de los orbifolds bidimensionales compactos"](/files/2023-12-28-La_clasificación_de_los_orbifolds_bidimensionales_compactos.pdf).
-- 2023-12-14. Class assignment talk slides: ["Orbifolds (título provisional)"](/files/2023-12-14-orbifolds_(título_provisional)_(título_final).pdf).
+- 2023-12-14. Class assignment talk slides: ["*Orbifolds* (título provisional)"](/files/2023-12-14-orbifolds_(título_provisional)_(título_final).pdf).

@@ -2,6 +2,7 @@
 title: Initial Commit
 permalink: /initial-commit
 date: 2024-09-28 17:45:00 +0200
+tags: meta
 excerpt: |
   Every process has a genesis and ends with a revelation.
 ---
@@ -13,7 +14,7 @@ Setting a deadline for each post also helps me get work done instead of endlessl
 My initial commitment is to prepare a small weekly post for each Friday, but this may change as I find out which workflow fits me best.
 Let's hope that is a reasonable schedule!
 
-I hope I can come back to this blog in a few months and use the written corpus as a collection of references.
+I hope I can come back to this blog in a few months' time, having already forgot where I learnt about each little piece of knowledge, and use the written corpus as a collection of references.
 
 See you around!
 
