@@ -20,7 +20,7 @@ import Hakyll hiding (pandocCompiler, readPandoc, writePandoc)
 import Network.Wai.Application.Static (StaticSettings (..))
 import System.Directory (doesFileExist)
 import System.FilePath (dropExtension, takeBaseName, takeExtension, (<.>), (</>))
-import Text.Pandoc (Block (CodeBlock, Para), Inline (..), Pandoc (..), nullAttr, readHtml, runPure)
+import Text.Pandoc (Block (CodeBlock, RawBlock), Inline (..), Pandoc (..), nullAttr, readHtml, runPure)
 import qualified Text.Pandoc as Pandoc
 import Text.Pandoc.Options
     ( enableExtension,
@@ -35,8 +35,6 @@ import Text.Pandoc.Options
 import Text.Pandoc.Walk (Walkable, query, walk, walkM)
 import Text.Pandoc.Writers (writePlain)
 import WaiAppStatic.Types (File (..), fromPiece, unsafeToPiece)
-import Data.ByteString.Lazy.Char8 (pack, unpack)
-import qualified Network.URI.Encode as URI (encode)
 
 ---------------------------------------------------------------------------------
 
@@ -52,14 +50,11 @@ postPandocCompiler = pandocCompilerWithTransformM pandocReaderOptions pandocWrit
 
 tikzFilter :: Block -> Compiler Block
 tikzFilter (CodeBlock (id, "tikzpicture":extraClasses, namevals) contents) =
-  (imageBlock . ("data:image/svg+xml;utf8," ++) . URI.encode . filter (/= '\n') . itemBody <$>) $
+  (rawBlock . itemBody <$>) $
     makeItem (Text.unpack contents)
      >>= loadAndApplyTemplate (fromFilePath "templates/tikz.tex") (bodyField "body")
-     >>= withItemBody (return . pack
-                       >=> unixFilterLBS "rubber-pipe" ["--pdf"]
-                       >=> unixFilterLBS "pdftocairo" ["-svg", "-", "-"]
-                       >=> return . unpack)
-  where imageBlock fname = Para [Image (id, "tikzpicture":extraClasses, namevals) [] (Text.pack fname, "")]
+     >>= withItemBody (unixFilter "latexmlc" ["-"])
+  where rawBlock fname = RawBlock "HTML" $ Text.pack fname
 tikzFilter x = return x
 
 ---------------------------------------------------------------------------------
