@@ -20,7 +20,7 @@ import Hakyll hiding (pandocCompiler, readPandoc, writePandoc)
 import Network.Wai.Application.Static (StaticSettings (..))
 import System.Directory (doesFileExist)
 import System.FilePath (dropExtension, takeBaseName, takeExtension, (<.>), (</>))
-import Text.Pandoc (Block (CodeBlock, RawBlock), Inline (..), Pandoc (..), nullAttr, readHtml, runPure)
+import Text.Pandoc (Block (CodeBlock, Para), Inline (..), Pandoc (..), nullAttr, readHtml, runPure)
 import qualified Text.Pandoc as Pandoc
 import Text.Pandoc.Options
     ( enableExtension,
@@ -35,27 +35,57 @@ import Text.Pandoc.Options
 import Text.Pandoc.Walk (Walkable, query, walk, walkM)
 import Text.Pandoc.Writers (writePlain)
 import WaiAppStatic.Types (File (..), fromPiece, unsafeToPiece)
+import Data.ByteString.Lazy.Char8 (pack, unpack)
+import qualified Network.URI.Encode as URI (encode)
+
 
 ---------------------------------------------------------------------------------
 
 myPandocTransform :: Pandoc -> Compiler Pandoc
-myPandocTransform = walkM tikzFilter
+myPandocTransform = walkM
+  (   tikzFilter "tikz" "templates/tikz.tex"
+  >=> tikzFilter "tikzcd" "templates/tikzcd.tex"
+  >=> tikzFilter "tikzcodi" "templates/tikzcodi.tex"
+  )
 myPandocCompiler :: Compiler (Item String)
 myPandocCompiler = pandocCompilerWithTransformM pandocReaderOptions pandocWriterOptions myPandocTransform
 
 postPandocTransform :: Pandoc -> Compiler Pandoc
-postPandocTransform = walkM tikzFilter . linkHeaders . tableOfContents
+postPandocTransform = myPandocTransform . linkHeaders . tableOfContents
 postPandocCompiler :: Compiler (Item String)
 postPandocCompiler = pandocCompilerWithTransformM pandocReaderOptions pandocWriterOptions postPandocTransform
 
-tikzFilter :: Block -> Compiler Block
-tikzFilter (CodeBlock (id, "tikzpicture":extraClasses, namevals) contents) =
-  (rawBlock . itemBody <$>) $
-    makeItem (Text.unpack contents)
-     >>= loadAndApplyTemplate (fromFilePath "templates/tikz.tex") (bodyField "body")
-     >>= withItemBody (unixFilter "latexmlc" ["-"])
-  where rawBlock fname = RawBlock "HTML" $ Text.pack fname
-tikzFilter x = return x
+imageBlock :: Text -> [(Text, Text)] -> Text -> Block
+imageBlock id namevals fname =
+  Para [Image (id, ["tikzpicture"], namevals) [] (fname, "")]
+
+tikzFilter :: Text -> FilePath -> Block -> Compiler Block
+tikzFilter tag template x@(CodeBlock (id, classes, namevals) contents) =
+  if classes == [tag]
+    then
+      (imageBlock id namevals
+      . Text.pack
+      . ("data:image/svg+xml;utf8," ++)
+      . URI.encode
+      . filter (/= '\n')
+      . Text.unpack
+      . itemBody <$>
+      )
+      $   makeItem (Text.unpack contents)
+      >>= loadAndApplyTemplate (fromFilePath template) (bodyField "body")
+      >>= withItemBody
+            (   return
+            .   pack
+            .   Text.unpack
+            >=> unixFilterLBS "rubber-pipe" ["--pdf"]
+            >=> unixFilterLBS "pdftocairo"  ["-svg", "-", "-"]
+            >=> return
+            .   Text.pack
+            .   unpack
+            )
+      .   fmap Text.pack
+    else return x
+tikzFilter _ _ x = return x
 
 ---------------------------------------------------------------------------------
 

@@ -5,6 +5,13 @@
   src: local('Libertinus Math'), url('LibertinusMath-Regular.woff2') format('woff2');
 }
 
+.tikzpicture {
+  zoom:2;
+  display:block;
+  margin-left:auto;
+  margin-right:auto
+}
+
 math {
   font-family: 'Libertinus Math';
   font-size-adjust: 0.48;
