@@ -7,7 +7,7 @@
 {-# LANGUAGE TypeApplications #-}
 
 import Control.Applicative (empty)
-import Control.Monad ((<=<))
+import Control.Monad ((<=<), (>=>))
 import Data.List (isInfixOf, isPrefixOf, nub)
 import Data.Maybe (mapMaybe)
 import Data.Monoid (First (..))
@@ -20,12 +20,49 @@ import Hakyll hiding (pandocCompiler, readPandoc, writePandoc)
 import Network.Wai.Application.Static (StaticSettings (..))
 import System.Directory (doesFileExist)
 import System.FilePath (dropExtension, takeBaseName, takeExtension, (<.>), (</>))
-import Text.Pandoc (Block, Inline (..), Pandoc (..), nullAttr, readHtml, runPure)
+import Text.Pandoc (Block (CodeBlock, Para), Inline (..), Pandoc (..), nullAttr, readHtml, runPure)
 import qualified Text.Pandoc as Pandoc
 import Text.Pandoc.Options
-import Text.Pandoc.Walk (Walkable, query, walk)
+    ( enableExtension,
+      getDefaultExtensions,
+      Extension(Ext_tex_math_dollars, Ext_header_attributes,
+                Ext_native_divs, Ext_backtick_code_blocks,
+                Ext_markdown_in_html_blocks, Ext_auto_identifiers,
+                Ext_gfm_auto_identifiers),
+      HTMLMathMethod(MathML),
+      ReaderOptions(readerExtensions),
+      WriterOptions(writerExtensions, writerHTMLMathMethod) )
+import Text.Pandoc.Walk (Walkable, query, walk, walkM)
 import Text.Pandoc.Writers (writePlain)
 import WaiAppStatic.Types (File (..), fromPiece, unsafeToPiece)
+import Data.ByteString.Lazy.Char8 (pack, unpack)
+import qualified Network.URI.Encode as URI (encode)
+
+---------------------------------------------------------------------------------
+
+myPandocTransform :: Pandoc -> Compiler Pandoc
+myPandocTransform = walkM tikzFilter
+myPandocCompiler :: Compiler (Item String)
+myPandocCompiler = pandocCompilerWithTransformM pandocReaderOptions pandocWriterOptions myPandocTransform
+
+postPandocTransform :: Pandoc -> Compiler Pandoc
+postPandocTransform = walkM tikzFilter . linkHeaders . tableOfContents
+postPandocCompiler :: Compiler (Item String)
+postPandocCompiler = pandocCompilerWithTransformM pandocReaderOptions pandocWriterOptions postPandocTransform
+
+tikzFilter :: Block -> Compiler Block
+tikzFilter (CodeBlock (id, "tikzpicture":extraClasses, namevals) contents) =
+  (imageBlock . ("data:image/svg+xml;utf8," ++) . URI.encode . filter (/= '\n') . itemBody <$>) $
+    makeItem (Text.unpack contents)
+     >>= loadAndApplyTemplate (fromFilePath "templates/tikz.tex") (bodyField "body")
+     >>= withItemBody (return . pack
+                       >=> unixFilterLBS "rubber-pipe" ["--pdf"]
+                       >=> unixFilterLBS "pdftocairo" ["-svg", "-", "-"]
+                       >=> return . unpack)
+  where imageBlock fname = Para [Image (id, "tikzpicture":extraClasses, namevals) [] (Text.pack fname, "")]
+tikzFilter x = return x
+
+---------------------------------------------------------------------------------
 
 root :: String
 root = "https://itremainsconsistent.gitlab.io"
@@ -178,7 +215,7 @@ main = do
             (constField "root" root <> urlField "url" <> metadataField)
             =<< makeItem ("" :: String)
 
-        pandocCompilerWith pandocReaderOptions pandocWriterOptions
+        myPandocCompiler
           >>= loadAndApplyTemplate
             "templates/page.html"
             (pageCtx <> constField "metadata" metadata.itemBody)
@@ -192,7 +229,7 @@ main = do
 
         postPandocItem <- do
           document <- readPandocWith pandocReaderOptions =<< getResourceBody
-          pure $ linkHeaders . tableOfContents <$> document
+          withItemBody postPandocTransform document
 
         post <- saveSnapshot "content" $ writePandocWith pandocWriterOptions postPandocItem
 
