@@ -4,3 +4,4 @@
 - [ ] Enable support for TikZ diagrams (as in <https://taeer.bar-yam.me/blog/posts/hakyll-tikz/>).
 - [ ] Enable support for BibLaTeX bibliography files (as in <https://tony-zorman.com/posts/hakyll-and-bibtex.html>).
 - [ ] Enable support for GitHub-style alerts in Markdown (as in <https://github.com/jgm/commonmark-hs/issues/132>).
+- [ ] Enable support for global LaTeX commands, inputting a `macros.tex` file into the Pandoc processor.
