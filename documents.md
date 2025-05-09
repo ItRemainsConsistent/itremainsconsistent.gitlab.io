@@ -22,6 +22,7 @@ Also available at Unizar's [Zaguan](https://zaguan.unizar.es/record/124830).
 
 ## Talks
 
+- 2025-01-14. gazteak RSME 2025: ["An introduction to the Cobordism Hypothesis"](/files/2025-01-14-charla-RSME25-v1.0.pdf).
 - 2024-10-24. XII EJT: ["Classifying extended 2D topological quantum field theories"](/files/2024-10-24-charla-EJT24-v1.0.pdf).
 - 2024-07-24. XXV ENEM: ["Teorías topológicas de campos cuánticos: Pantalones, álgebras de Frobenius y el Lema del Zorro"](/files/2024-07-24-charla-enem-2024-v1.1.pdf).
 
