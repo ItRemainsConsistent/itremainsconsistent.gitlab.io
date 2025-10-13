@@ -28,7 +28,7 @@ Also available at Unizar's [Zaguan](https://zaguan.unizar.es/record/124830).
 
 ## Posters
 
-- 2025-10-21. XIII EJT: ["A brief introduction to graphical calculus"](/files/2025-10-21-poster-ejt25-v1.0.pdf).
+- 2025-10-21. XIII EJT: ["A brief introduction to graphical calculus"](/files/2025-10-21-poster-ejt25-v1.1.pdf).
 
 ## Miscellaneous stuff
 
