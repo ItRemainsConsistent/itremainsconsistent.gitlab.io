@@ -26,6 +26,7 @@ import Text.Pandoc.Options
 import Text.Pandoc.Walk (Walkable, query, walk)
 import Text.Pandoc.Writers (writePlain)
 import WaiAppStatic.Types (File (..), fromPiece, unsafeToPiece)
+import RedirectsDB (redirectedLinks) -- Hardcoded list of links to redirect.
 
 root :: String
 root = "https://itremainsconsistent.gitlab.io"
@@ -287,6 +288,8 @@ main = do
         atomTemplate <- loadBody "templates/atom.xml"
         atomItemTemplate <- loadBody "templates/atom-item.xml"
         renderAtomWithTemplates atomTemplate atomItemTemplate feedConfiguration feedCtx posts
+
+    version "redirects" $ createRedirects redirectedLinks
 
 linkHeaders :: Pandoc -> Pandoc
 linkHeaders =
