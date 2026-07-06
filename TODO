@@ -1,0 +1,8 @@
+DIAGRAMS:
+- Adapt the code to use TikZ inside Hakyll from https://www.antonia.is/hakyll-setup.html.
+- Add a LaTeX distribution to the GitLab pages pipeline; try to find a suitable Docker image.
+- Also install rubber-pipe and pdftocairo (from https://gitlab.com/latex-rubber/rubber and https://poppler.freedesktop.org/).
+
+BIBLIOGRAPHY:
+- Adapt the code to use BibTeX inside Hakyll from https://www.antonia.is/hakyll-setup.html.
+
