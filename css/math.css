@@ -13,3 +13,11 @@ math {
 math[display="block"] {
   font-size: 1.0em;
 }
+
+/* TODO: Don't hardcode the height. Make it the actual size of the text. */
+.tikzpicture {
+  height: 200px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}

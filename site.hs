@@ -7,7 +7,7 @@
 {-# LANGUAGE TypeApplications #-}
 
 import Control.Applicative (empty)
-import Control.Monad ((<=<))
+import Control.Monad ((<=<), (>=>))
 import Data.List (isInfixOf, isPrefixOf, nub)
 import Data.Maybe (mapMaybe)
 import Data.Monoid (First (..))
@@ -17,14 +17,16 @@ import qualified Data.Text as Text
 
 import Data.Text (Text)
 import Hakyll hiding (pandocCompiler, readPandoc, writePandoc)
+import Hakyll.Core.Store (hash)
 import Network.Wai.Application.Static (StaticSettings (..))
-import System.Directory (doesFileExist)
+import System.Directory (createDirectoryIfMissing, doesFileExist)
 import System.FilePath (dropExtension, takeBaseName, takeExtension, (<.>), (</>))
-import Text.Pandoc (Block, Inline (..), Pandoc (..), nullAttr, readHtml, runPure)
+import Text.Pandoc (Block (CodeBlock, Para), Inline (..), Pandoc (..), nullAttr, readHtml, runPure)
 import qualified Text.Pandoc as Pandoc
 import Text.Pandoc.Options
-import Text.Pandoc.Walk (Walkable, query, walk)
+import Text.Pandoc.Walk (Walkable, query, walk, walkM)
 import Text.Pandoc.Writers (writePlain)
+import Data.ByteString.Lazy.Char8 (pack, unpack)
 import WaiAppStatic.Types (File (..), fromPiece, unsafeToPiece)
 
 root :: String
@@ -86,6 +88,28 @@ separateBy predicate items =
       case separateBy predicate suffix of
         (prefix', suffix') ->
           (prefix, (target, prefix') : suffix')
+
+-- | Converts TikZ code to a SVG data URL.
+-- Adapted from https://www.antonia.is/hakyll-setup.html and https://taeer.bar-yam.me/blog/posts/hakyll-tikz/.
+convertTikz :: Block -> Identifier -> Compiler Block
+convertTikz (CodeBlock (cid, classes, namevals) contents) templatename = do
+  let name = "/posts/images/tikz/" <> hash [Text.unpack contents] <> ".svg"
+  let filename = "_site" <> name
+  unsafeCompiler $ createDirectoryIfMissing True "_site/posts/images/tikz"
+  _ <- makeItem contents
+     >>= loadAndApplyTemplate templatename (bodyField "body") . fmap Text.unpack
+     >>= withItemBody (return . pack 
+                       >=> unixFilterLBS "rubber-pipe" ["--pdf"] 
+                       >=> unixFilterLBS "pdftocairo" ["-svg", "-", filename ] 
+                       >=> return . unpack)
+  return $ Para [Image (cid, classes, namevals) [] (Text.pack name, "")]
+convertTikz x _ = return x
+
+-- The actual filter we will pass to Pandoc.
+tikzFilter :: Block -> Compiler Block
+tikzFilter (CodeBlock (cid, "tikzpicture":extraClasses, namevals) contents) = convertTikz (CodeBlock (cid, "tikzpicture":extraClasses, namevals) contents) "templates/tikz.tex"
+tikzFilter (CodeBlock (cid, "tikzcd":extraClasses, namevals) contents) = convertTikz (CodeBlock (cid, "tikzpicture":extraClasses, namevals) contents) "templates/tikzcd.tex"
+tikzFilter x = return x
 
 main :: IO ()
 main = do
@@ -191,7 +215,7 @@ main = do
         identifier <- getUnderlying
 
         postPandocItem <- do
-          document <- readPandocWith pandocReaderOptions =<< getResourceBody
+          document <- walkM tikzFilter =<< readPandocWith pandocReaderOptions =<< getResourceBody
           pure $ linkHeaders . tableOfContents <$> document
 
         post <- saveSnapshot "content" $ writePandocWith pandocWriterOptions postPandocItem

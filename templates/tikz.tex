@@ -1,0 +1,23 @@
+\documentclass{article}
+\usepackage[pdftex,active,tightpage]{preview}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{xcolor}
+% TODO: Make the color CSS dependent.
+\definecolor{fg}{HTML}{2f2f2f}
+\definecolor{bg}{HTML}{f5f5ff}
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows, calc, decorations.markings, bending, cd}
+\tikzcdset{
+  background color=bg,
+  arrow style=tikz,
+  arrows=semithick
+}
+
+\begin{document}
+\color{fg}
+\begin{preview}
+  \begin{tikzpicture}[auto]
+    $body$
+  \end{tikzpicture}
+\end{preview}
+\end{document}

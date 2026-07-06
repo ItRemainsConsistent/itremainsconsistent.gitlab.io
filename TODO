@@ -1,5 +1,6 @@
 DIAGRAMS:
-- Adapt the code to use TikZ inside Hakyll from https://www.antonia.is/hakyll-setup.html.
+✔ Adapt the code to use TikZ inside Hakyll from https://www.antonia.is/hakyll-setup.html. @done(26-07-06 16:50)
+- Make it work with dark theme (In fact, add a dark theme to the webpage). Make the templates CSS dependent.
 - Add a LaTeX distribution to the GitLab pages pipeline; try to find a suitable Docker image.
 - Also install rubber-pipe and pdftocairo (from https://gitlab.com/latex-rubber/rubber and https://poppler.freedesktop.org/).
 
