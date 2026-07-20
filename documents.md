@@ -28,6 +28,7 @@ Also available at Unizar's [Zaguan](https://zaguan.unizar.es/record/124830).
 
 ## Posters
 
+- 2026-07-27. Higher Categories for the Working Mathematician: ["An axiomatic cheatsheet for graphical calculus"](/files/2026-07-27-poster-hcftwm-v1.0.pdf).
 - 2025-10-21. XIII EJT: ["A brief introduction to graphical calculus"](/files/2025-10-21-poster-ejt25-v1.2.pdf). (2026-01-14: Updated the poster with some corrections. Outdated conference version [also available](/files/2025-10-21-poster-ejt25-v1.1.pdf)).
 
 ## Miscellaneous stuff
