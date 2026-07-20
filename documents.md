@@ -22,14 +22,14 @@ Also available at Unizar's [Zaguan](https://zaguan.unizar.es/record/124830).
 
 ## Talks
 
-- 2025-01-14. gazteak RSME 2025: ["An introduction to the Cobordism Hypothesis"](/files/2025-01-14-charla-RSME25-v1.0.pdf).
-- 2024-10-24. XII EJT: ["Classifying extended 2D topological quantum field theories"](/files/2024-10-24-charla-EJT24-v1.0.pdf).
-- 2024-07-24. XXV ENEM: ["Teorías topológicas de campos cuánticos: Pantalones, álgebras de Frobenius y el Lema del Zorro"](/files/2024-07-24-charla-enem-2024-v1.1.pdf).
+- 2025-01-14. gazteakRSME2025 (Bilbao): ["An introduction to the Cobordism Hypothesis"](/files/2025-01-14-charla-RSME25-v1.0.pdf).
+- 2024-10-24. XII Encuentro de Jóvenes Topólogos (Salamanca): ["Classifying extended 2D topological quantum field theories"](/files/2024-10-24-charla-EJT24-v1.0.pdf).
+- 2024-07-24. XXV Encuentro Nacional de Estudiantes de Matemáticas (Madrid): ["Teorías topológicas de campos cuánticos: Pantalones, álgebras de Frobenius y el Lema del Zorro"](/files/2024-07-24-charla-enem-2024-v1.1.pdf).
 
 ## Posters
 
-- 2026-07-27. Higher Categories for the Working Mathematician: ["An axiomatic cheatsheet for graphical calculus"](/files/2026-07-27-poster-hcftwm-v1.0.pdf).
-- 2025-10-21. XIII EJT: ["A brief introduction to graphical calculus"](/files/2025-10-21-poster-ejt25-v1.2.pdf). (2026-01-14: Updated the poster with some corrections. Outdated conference version [also available](/files/2025-10-21-poster-ejt25-v1.1.pdf)).
+- 2026-07-27. Higher Categories for the Working Mathematician (Göttingen): ["An axiomatic cheatsheet for graphical calculus"](/files/2026-07-27-poster-hcftwm-v1.0.pdf).
+- 2025-10-21. XIII Encuentro de Jóvenes Topólogos (Madrid): ["A brief introduction to graphical calculus"](/files/2025-10-21-poster-ejt25-v1.2.pdf). (2026-01-14: Updated the poster with some corrections. Outdated conference version [also available](/files/2025-10-21-poster-ejt25-v1.1.pdf)).
 
 ## Miscellaneous stuff
 
