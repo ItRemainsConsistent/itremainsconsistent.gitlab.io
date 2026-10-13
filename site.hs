@@ -131,7 +131,7 @@ main = do
             ( constField "root" root
                 <> constField "url" "/"
                 <> constField "title" "It Remains Consistent"
-                <> constField "description" "A math blog."
+                <> constField "description" "A document repository."
             )
             =<< makeItem ("" :: String)
 
@@ -276,7 +276,7 @@ main = do
         let feedConfiguration =
               FeedConfiguration
                 { feedTitle = "It Remains Consistent"
-                , feedDescription = "A math blog."
+                , feedDescription = "A document repository."
                 , feedAuthorName = "Santiago Pareja-Pérez"
                 , feedAuthorEmail = "itremainsconsistent@proton.me"
                 , feedRoot = root
