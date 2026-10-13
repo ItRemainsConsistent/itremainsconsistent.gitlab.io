@@ -9,11 +9,25 @@ description: A little bit about me.
 Hello!
 I'm Santiago Pareja-Pérez, a PhD student from Zaragoza (in Spain).
 
-I am currently studying plane curve singularities.
-
 ## Research interests
 
-A list of research interests will appear here eventually.
+This is a short list of my research interests.
+They are broadly divided into algebraic topology, algebraic geometry and abstract(er) nonsense, but of course the most interesting things are often in the overlap.
+
+- Algebraic topology
+    - Orbifolds.
+    - Quandles and racks (as invariants of codimension 2 embeddings).
+    - Relative homotopy groups.
+- Algebraic geometry
+    - Topology of plane algebraic curves.
+        - In particular, identification of Zariski pairs.
+        - Knot-inspired invariants for plane algebraic curves.
+- Abstract nonsense
+    - Monoidal categories.
+    - Higher categories.
+    - TQFTs in the broad sense.
+
+I am interested in pretty much anything relating algebra to topology or geometry, but I am bad at wrapping my head around a lot of things (and of course we all have limited time); in a sense, this is a list of "stuff I am decent at, hopefully".
 
 You can check out some of my stuff over at the [Documents page](/documents), if you are curious!
 
